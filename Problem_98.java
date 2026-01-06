@@ -27,3 +27,31 @@ class Problem_98 {
         return true;
     }
 }
+
+
+// Another approach using in-order traversal
+
+class Problem_98_InOrder {
+    private Integer prev = null;
+
+    public boolean isValidBST(TreeNode root) {
+        return inOrderTraversal(root);
+    }
+
+    private boolean inOrderTraversal(TreeNode node) {
+        if (node == null) {
+            return true;
+        }
+
+        if (!inOrderTraversal(node.left)) {
+            return false;
+        }
+
+        if (prev != null && node.val <= prev) {
+            return false;
+        }
+        prev = node.val;
+
+        return inOrderTraversal(node.right);
+    }
+}
