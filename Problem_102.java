@@ -1,17 +1,46 @@
-// Problem 102: Triangle Containment
+// Problem 102: Binary Tree Level Order Traversal
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
 
 class Problem_102 {
-    public boolean isPointInTriangle(int px, int py, int x1, int y1, int x2, int y2, int x3, int y3) {
-        int areaOrig = triangleArea(x1, y1, x2, y2, x3, y3);
-        int area1 = triangleArea(px, py, x2, y2, x3, y3);
-        int area2 = triangleArea(x1, y1, px, py, x3, y3);
-        int area3 = triangleArea(x1, y1, x2, y2, px, py);
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
 
-        return areaOrig == area1 + area2 + area3;
-    }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-    private int triangleArea(int x1, int y1, int x2, int y2, int x3, int y3) {
-        return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>(size);
+
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+
+            result.add(level);
+        }
+
+        return result;
     }
 }
 
