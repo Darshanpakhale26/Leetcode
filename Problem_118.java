@@ -14,7 +14,6 @@ class Problem_118 {
                     int rightParent = triangle.get(rowIndex - 1).get(colIndex);
                     row.add(leftParent + rightParent);
                 }
-            }
             triangle.add(row);
         }
         
