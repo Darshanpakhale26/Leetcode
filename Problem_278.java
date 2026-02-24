@@ -21,5 +21,6 @@ public class Problem_278 extends VersionControl {
         }
         
         return left; // left should point to the first bad version
-    }   
+    } 
+      
 }
