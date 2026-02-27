@@ -21,4 +21,10 @@ class Problem_448 {
 
         return disappearedNumbers;
     }
+    public static void main(String[] args) {
+        Problem_448 solution = new Problem_448();
+        int[] nums = {1,1,1,1};
+        List<Integer> result = solution.findDisappearedNumbers(nums);
+        System.out.println("The disappeared numbers are: " + result);
+    }
 }
